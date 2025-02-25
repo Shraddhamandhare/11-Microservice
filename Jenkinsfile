@@ -12,12 +12,12 @@ pipeline {
                     namespace: 'webapps', 
                     serverUrl: 'https://8282A3DD7B9B22EA6FD73FC220A0045E.gr7.ap-south-1.eks.amazonaws.com'
                 ]]) {
-                    sh 'kubectl apply -f deployment-service.yml' // our main branch file
+                    sh 'kubectl apply -f deployment-service.yml' // Deploy application
                 } 
             }
         }
 
-        stage('Verify deployment') {
+        stage('Verify Deployment') {
             steps {
                 withKubeCredentials(kubectlCredentials: [[
                     caCertificate: '', 
@@ -27,7 +27,7 @@ pipeline {
                     namespace: 'webapps', 
                     serverUrl: 'https://8282A3DD7B9B22EA6FD73FC220A0045E.gr7.ap-south-1.eks.amazonaws.com'
                 ]]) {
-                    sh 'kubectl get svc -n webapps'
+                    sh 'kubectl get svc -n webapps' // Verify deployment
                 } 
             }
         }
